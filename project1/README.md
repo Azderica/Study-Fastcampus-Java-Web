@@ -58,5 +58,14 @@ Entity? JPA에서는 테이블을 자동으로 생성해주는 기능 존재 (DB
 
 따로 선언하지 않아도 기본적인 CRUD를 선언해줌.
 
-어노테이션 `@Repository`  +  상속으로 `extends JpaRepository<T, ID>`를 선언함으로서 사용할 수 있음.
+어노테이션 `@Repository`  +  상속으로 `extends JpaRepository<T, ID>`를 선언함으로4서 사용할 수 있음.
+
+### JPA 연관관계 설정 배우기
+
+| 관계   | Annotation    |
+| ------ | ------------- |
+| 일대일 | `@OneToOne`   |
+| 일대다 | `@OneToMany`  |
+| 다대일 | `@ManyToOne`  |
+| 다대다 | `@ManyToMany` |
 

@@ -2,12 +2,14 @@ package com.myepark.study.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity // ==table
 // table이름이 같으므로 따로 선언의 필요가 없음.
 public class User {
