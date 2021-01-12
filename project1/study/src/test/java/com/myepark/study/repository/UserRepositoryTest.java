@@ -1,8 +1,10 @@
 package com.myepark.study.repository;
 
 import com.myepark.study.StudyApplicationTests;
+import com.myepark.study.model.entity.Item;
 import com.myepark.study.model.entity.User;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,7 +12,7 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-
+@Ignore
 public class UserRepositoryTest extends StudyApplicationTests {
 
     // DI, Dependency Injection (의존성 주입)
@@ -35,11 +37,12 @@ public class UserRepositoryTest extends StudyApplicationTests {
     @Test
     @Transactional  // 동작은 일어나나 DB에 마지막 롤백이 일어난다.
     public void read() {
-        Optional<User> user = userRepository.findById(2L);
+        Optional<User> user = userRepository.findByAccount("TestUser03");
 
         user.ifPresent(selectUser -> {
-            System.out.println("user : " + selectUser);
-            System.out.println("email : " + selectUser.getEmail());
+            selectUser.getOrderDetailList().stream().forEach(detail -> {
+                System.out.println(detail.getItem());
+            });
         });
     }
 
