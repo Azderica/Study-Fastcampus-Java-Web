@@ -69,3 +69,23 @@ Entity? JPA에서는 테이블을 자동으로 생성해주는 기능 존재 (DB
 | 다대일 | `@ManyToOne`  |
 | 다대다 | `@ManyToMany` |
 
+### JPA Fetch Type
+
+일반적으로 Fetch Type은 Lazy와 Eager가 있습니다. 그러나 해당 부분은 다른 의미를 가지고 있습니다.
+
+- `LAZY` : 지연 로딩, 필요없으면 가져오지 않습니다. 대부분의 경우에서 추천합니다.
+- `EAGER` : 즉시 로딩, join을 다 해버림, 이는 성능의 저하가 발생할 수 있습니다.  일반적으로 `1:1` 이 아닌 경우를 제외하고는 사용하지 않는 것이 좋습니다.
+
+```sql
+--LAZY
+select * from item where id = ?
+
+-- EAGER
+select * from item where
+	item_id = order_detail.item_id join
+	user_id = order_detail.user_id join
+	where item.id = ?
+```
+
+
+
