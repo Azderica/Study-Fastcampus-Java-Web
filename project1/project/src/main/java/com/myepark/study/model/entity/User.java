@@ -23,9 +23,17 @@ public class User {
 
     private String account;
 
+    private String password;
+
+    private String status;
+
     private String email;
 
     private String phoneNumber;
+
+    private LocalDateTime registeredAt;
+
+    private LocalDateTime unregisteredAT;
 
     private LocalDateTime createdAt;
 
