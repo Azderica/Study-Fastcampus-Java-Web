@@ -1,0 +1,16 @@
+com/myepark/study/repository/AdminUserRepositoryTest.java
+ com.myepark.study.repository.AdminUserRepositoryTest
+com/myepark/study/repository/PartnerRepositoryTest.java
+ com.myepark.study.repository.PartnerRepositoryTest
+com/myepark/study/repository/OrderDetailRepositoryTest.java
+ com.myepark.study.repository.OrderDetailRepositoryTest
+com/myepark/study/repository/ItemRepositoryTest.java
+ com.myepark.study.repository.ItemRepositoryTest
+com/myepark/study/StudyApplicationTests.java
+ com.myepark.study.StudyApplicationTests
+com/myepark/study/repository/OrderGroupRepositoryTest.java
+ com.myepark.study.repository.OrderGroupRepositoryTest
+com/myepark/study/repository/UserRepositoryTest.java
+ com.myepark.study.repository.UserRepositoryTest
+com/myepark/study/repository/CategoryRepositoryTest.java
+ com.myepark.study.repository.CategoryRepositoryTest

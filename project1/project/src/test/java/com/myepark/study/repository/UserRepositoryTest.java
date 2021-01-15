@@ -21,28 +21,21 @@ public class UserRepositoryTest extends StudyApplicationTests {
     @Test
     @Transactional  // 동작은 일어나나 DB에 마지막 롤백이 일어난다.
     public void create() {
-        // String sql = insert into user (%s, %s, %d) value (account, eamil, age);
-        User user = new User();
-        user.setAccount("TestUser02");
-        user.setEmail("TestUser02@gmail.com");
-        user.setPhoneNumber("010-1111-1111");
-        user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("admin");
+        String account = "Test01";
+        String password = "Test01";
+        String status = "REGISTERED";
+        String email = "Test01@gmail.com";
+        String phoneNumber = "010-1111-2222";
+        LocalDateTime registeredAt = LocalDateTime.now();
+        LocalDateTime createdAt = LocalDateTime.now();
+        String createdBy = "AdminServer"
 
-        User newUser = userRepository.save(user);
-        System.out.println("newUser : " + newUser);
     }
 
     @Test
     @Transactional  // 동작은 일어나나 DB에 마지막 롤백이 일어난다.
     public void read() {
-        Optional<User> user = userRepository.findByAccount("TestUser03");
 
-        user.ifPresent(selectUser -> {
-            selectUser.getOrderDetailList().stream().forEach(detail -> {
-                System.out.println(detail.getItem());
-            });
-        });
     }
 
     @Test
