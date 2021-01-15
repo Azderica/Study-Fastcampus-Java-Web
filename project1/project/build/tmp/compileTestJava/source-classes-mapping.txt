@@ -10,7 +10,7 @@ com/myepark/study/StudyApplicationTests.java
  com.myepark.study.StudyApplicationTests
 com/myepark/study/repository/OrderGroupRepositoryTest.java
  com.myepark.study.repository.OrderGroupRepositoryTest
-com/myepark/study/repository/UserRepositoryTest.java
- com.myepark.study.repository.UserRepositoryTest
 com/myepark/study/repository/CategoryRepositoryTest.java
  com.myepark.study.repository.CategoryRepositoryTest
+com/myepark/study/repository/UserRepositoryTest.java
+ com.myepark.study.repository.UserRepositoryTest

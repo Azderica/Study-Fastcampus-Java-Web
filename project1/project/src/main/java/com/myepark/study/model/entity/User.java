@@ -33,7 +33,7 @@ public class User {
 
     private LocalDateTime registeredAt;
 
-    private LocalDateTime unregisteredAT;
+    private LocalDateTime unregisteredAt;
 
     private LocalDateTime createdAt;
 
@@ -43,7 +43,4 @@ public class User {
 
     private String updatedBy;
 
-    private Long orderGroupId;
-
-    private Long itemId;
 }

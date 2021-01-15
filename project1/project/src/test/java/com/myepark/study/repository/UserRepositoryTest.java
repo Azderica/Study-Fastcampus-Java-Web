@@ -11,7 +11,6 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@Ignore
 public class UserRepositoryTest extends StudyApplicationTests {
 
     // DI, Dependency Injection (의존성 주입)
@@ -19,7 +18,6 @@ public class UserRepositoryTest extends StudyApplicationTests {
     private UserRepository userRepository;
 
     @Test
-    @Transactional  // 동작은 일어나나 DB에 마지막 롤백이 일어난다.
     public void create() {
         String account = "Test01";
         String password = "Test01";
@@ -28,14 +26,27 @@ public class UserRepositoryTest extends StudyApplicationTests {
         String phoneNumber = "010-1111-2222";
         LocalDateTime registeredAt = LocalDateTime.now();
         LocalDateTime createdAt = LocalDateTime.now();
-        String createdBy = "AdminServer"
+        String createdBy = "AdminServer";
 
+        User user = new User();
+        user.setAccount(account);
+        user.setPassword(password);
+        user.setStatus(status);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+        user.setRegisteredAt(registeredAt);
+        user.setCreatedAt(createdAt);
+        user.setCreatedBy(createdBy);
+
+        User newUser = userRepository.save(user);
+        Assert.assertNotNull(newUser);
     }
 
     @Test
     @Transactional  // 동작은 일어나나 DB에 마지막 롤백이 일어난다.
     public void read() {
-
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
+        Assert.assertNotNull(user);
     }
 
     @Test
