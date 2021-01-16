@@ -19,8 +19,6 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime orderAt;
-
     private String status;
 
     private LocalDateTime arrivalDate;
@@ -29,10 +27,6 @@ public class OrderDetail {
 
     private BigDecimal totalPrice;
 
-    private LocalDateTime registeredAt;
-
-    private LocalDateTime unregisteredAt;
-
     private LocalDateTime createdAt;
 
     private String createdBy;
@@ -40,5 +34,9 @@ public class OrderDetail {
     private LocalDateTime updatedAt;
 
     private String updatedBy;
+
+    private Long orderGroupId;
+
+    private Long itemId;
 
 }
