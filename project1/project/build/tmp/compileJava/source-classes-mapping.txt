@@ -23,14 +23,12 @@ com/myepark/study/repository/OrderDetailRepository.java
 com/myepark/study/model/entity/AdminUser.java
  com.myepark.study.model.entity.AdminUser
  com.myepark.study.model.entity.AdminUser$AdminUserBuilder
-com/myepark/study/model/entity/Item.java
- com.myepark.study.model.entity.Item
- com.myepark.study.model.entity.Item$ItemBuilder
+com/myepark/study/service/UserApiLogicService.java
+ com.myepark.study.service.UserApiLogicService
 com/myepark/study/model/entity/OrderGroup.java
  com.myepark.study.model.entity.OrderGroup
-com/myepark/study/model/entity/OrderDetail.java
- com.myepark.study.model.entity.OrderDetail
- com.myepark.study.model.entity.OrderDetail$OrderDetailBuilder
+com/myepark/study/controller/api/UserApiController.java
+ com.myepark.study.controller.api.UserApiController
 com/myepark/study/repository/UserRepository.java
  com.myepark.study.repository.UserRepository
 com/myepark/study/model/entity/Category.java
@@ -45,5 +43,29 @@ com/myepark/study/model/entity/Partner.java
 com/myepark/study/model/network/Header.java
  com.myepark.study.model.network.Header
  com.myepark.study.model.network.Header$HeaderBuilder
+com/myepark/study/model/network/response/UserApiResponse.java
+ com.myepark.study.model.network.response.UserApiResponse
+ com.myepark.study.model.network.response.UserApiResponse$UserApiResponseBuilder
+com/myepark/study/model/network/request/UserApiRequest.java
+ com.myepark.study.model.network.request.UserApiRequest
+ com.myepark.study.model.network.request.UserApiRequest$UserApiRequestBuilder
 com/myepark/study/controller/GetController.java
  com.myepark.study.controller.GetController
+com/myepark/study/ifs/CrudInterface.java
+ com.myepark.study.ifs.CrudInterface
+com/myepark/study/model/network/response/ItemApiResponse.java
+ com.myepark.study.model.network.response.ItemApiResponse
+ com.myepark.study.model.network.response.ItemApiResponse$ItemApiResponseBuilder
+com/myepark/study/model/network/request/ItemApiRequest.java
+ com.myepark.study.model.network.request.ItemApiRequest
+ com.myepark.study.model.network.request.ItemApiRequest$ItemApiRequestBuilder
+com/myepark/study/model/entity/Item.java
+ com.myepark.study.model.entity.Item
+ com.myepark.study.model.entity.Item$ItemBuilder
+com/myepark/study/model/entity/OrderDetail.java
+ com.myepark.study.model.entity.OrderDetail
+ com.myepark.study.model.entity.OrderDetail$OrderDetailBuilder
+com/myepark/study/service/ItemApiLogicService.java
+ com.myepark.study.service.ItemApiLogicService
+com/myepark/study/controller/api/ItemApiController.java
+ com.myepark.study.controller.api.ItemApiController

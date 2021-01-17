@@ -11,5 +11,5 @@ public interface CrudInterface<Req, Res> {
 
     Header<Res> update(Header<Req> request);
 
-    Header<Res> delete(Long id);
+    Header delete(Long id);
 }
