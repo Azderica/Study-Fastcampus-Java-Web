@@ -12,11 +12,12 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity //order_detail
+@AllArgsConstructor
+@Data
+@Entity
 @EntityListeners(AuditingEntityListener.class)
+@ToString(exclude = {"item", "orderGroup"})
 @Builder
 @Accessors(chain = true)
 public class OrderDetail {
@@ -45,12 +46,11 @@ public class OrderDetail {
     @LastModifiedBy
     private String updatedBy;
 
-    // OrderDetail N : 1 Item
-    @ManyToOne
-    private Item item;
-
     // OrderDetail N : 1 OrderGroup
     @ManyToOne
     private OrderGroup orderGroup;
 
+    // OrderDetail N : 1 Item
+    @ManyToOne
+    private Item item;
 }
