@@ -64,10 +64,10 @@ com/myepark/study/model/entity/Item.java
  com.myepark.study.model.entity.Item$ItemBuilder
 com/myepark/study/controller/api/ItemApiController.java
  com.myepark.study.controller.api.ItemApiController
-com/myepark/study/service/PartnerApiLogicService.java
- com.myepark.study.service.PartnerApiLogicService
-com/myepark/study/controller/api/PartnerApiController.java
- com.myepark.study.controller.api.PartnerApiController
+com/myepark/study/service/OrderDetailApiLogicService.java
+ com.myepark.study.service.OrderDetailApiLogicService
+com/myepark/study/controller/api/OrderDetailApiController.java
+ com.myepark.study.controller.api.OrderDetailApiController
 com/myepark/study/model/network/response/AdminUserApiResponse.java
  com.myepark.study.model.network.response.AdminUserApiResponse
  com.myepark.study.model.network.response.AdminUserApiResponse$AdminUserApiResponseBuilder
@@ -116,7 +116,7 @@ com/myepark/study/model/network/response/PartnerApiResponse.java
 com/myepark/study/model/entity/OrderDetail.java
  com.myepark.study.model.entity.OrderDetail
  com.myepark.study.model.entity.OrderDetail$OrderDetailBuilder
-com/myepark/study/controller/api/OrderDetailApiController.java
- com.myepark.study.controller.api.OrderDetailApiController
-com/myepark/study/service/OrderDetailApiLogicService.java
- com.myepark.study.service.OrderDetailApiLogicService
+com/myepark/study/service/PartnerApiLogicService.java
+ com.myepark.study.service.PartnerApiLogicService
+com/myepark/study/controller/api/PartnerApiController.java
+ com.myepark.study.controller.api.PartnerApiController
