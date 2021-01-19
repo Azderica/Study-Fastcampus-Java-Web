@@ -1,20 +1,27 @@
 package com.myepark.study.service;
 
-import com.myepark.study.ifs.CrudInterface;
 import com.myepark.study.model.entity.User;
 import com.myepark.study.model.enumclass.UserStatus;
 import com.myepark.study.model.network.Header;
+import com.myepark.study.model.network.Pagination;
 import com.myepark.study.model.network.request.UserApiRequest;
 import com.myepark.study.model.network.response.UserApiResponse;
 import com.myepark.study.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResponse, User> {
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Header<UserApiResponse> create(Header<UserApiRequest> request) {
@@ -33,7 +40,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         User newUser = baseRepository.save(user);
 
         //  3. 생성된 데이터 -> UserApiResponse return
-        return response(newUser);
+        return Header.OK(response(newUser));
     }
 
     @Override
@@ -42,7 +49,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
         // id -> repository getOne, getById
         // user -> userApiResponse return
         return baseRepository.findById(id)
-                .map(user -> response(user))
+                .map(user -> Header.OK(response(user)))
                 .orElseGet(
                         () -> Header.ERROR("No Data")
                 );
@@ -68,7 +75,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
             return user;
         })
                 .map(user -> baseRepository.save(user))     // update -> newUser
-                .map(updateUser -> response(updateUser))    // userApiResponse
+                .map(updateUser -> Header.OK(response(updateUser)))    // userApiResponse
                 .orElseGet(() -> Header.ERROR("No Data"));
     }
 
@@ -85,7 +92,7 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
 
     }
 
-    private Header<UserApiResponse> response(User user) {
+    private UserApiResponse response(User user) {
         // user -> userApiResponse
         UserApiResponse userApiResponse = UserApiResponse.builder()
                 .id(user.getId())
@@ -99,6 +106,26 @@ public class UserApiLogicService extends BaseService<UserApiRequest, UserApiResp
                 .build();
 
         // Header + data return
-        return Header.OK(userApiResponse);
+        return userApiResponse;
+    }
+
+    public Header<List<UserApiResponse>> search(Pageable pageable) {
+        Page<User> users = userRepository.findAll(pageable);
+
+        List<UserApiResponse> userApiResponseList = users.stream()
+                .map(user -> response(user))
+                .collect(Collectors.toList());
+
+        // List<UserApiResponse>
+        // Header<List<UserApiRespons>>
+
+        Pagination pagination = Pagination.builder()
+                .totalPages(users.getTotalPages())
+                .totalElements(users.getTotalElements())
+                .currentPage(users.getNumber())
+                .currentElements(users.getNumberOfElements())
+                .build();
+
+        return Header.OK(userApiResponseList, pagination);
     }
 }
