@@ -2,6 +2,7 @@ package com.myepark.study.repository;
 
 import com.myepark.study.StudyApplicationTests;
 import com.myepark.study.model.entity.OrderGroup;
+import com.myepark.study.model.enumclass.OrderType;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class OrderGroupRepositoryTest extends StudyApplicationTests {
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private OrderGroupRepository orderGroupRepository;
 
     @Test
@@ -21,7 +25,7 @@ public class OrderGroupRepositoryTest extends StudyApplicationTests {
 
         OrderGroup orderGroup = new OrderGroup();
         orderGroup.setStatus("COMPLETE");
-        orderGroup.setOrderType("ALL");
+        orderGroup.setOrderType(OrderType.ALL);
         orderGroup.setRevAddress("서울시 강남구");
         orderGroup.setRevName("홍길동");
         orderGroup.setPaymentType("CARD");
@@ -31,7 +35,7 @@ public class OrderGroupRepositoryTest extends StudyApplicationTests {
         orderGroup.setArrivalDate(LocalDateTime.now());
         orderGroup.setCreatedAt(LocalDateTime.now());
         orderGroup.setCreatedBy("AdminServer");
-        //orderGroup.setUserId(2L);   // -> user
+        orderGroup.setUser(userRepository.getOne(1L));   // -> user
 
         OrderGroup newOrderGroup = orderGroupRepository.save(orderGroup);
         Assert.assertNotNull(newOrderGroup);

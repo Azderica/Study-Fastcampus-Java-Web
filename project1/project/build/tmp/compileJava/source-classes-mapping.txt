@@ -2,8 +2,8 @@ com/myepark/study/repository/AdminUserRepository.java
  com.myepark.study.repository.AdminUserRepository
 com/myepark/study/StudyApplication.java
  com.myepark.study.StudyApplication
-com/myepark/study/repository/PartnerRepository.java
- com.myepark.study.repository.PartnerRepository
+com/myepark/study/controller/api/CategoryApiController.java
+ com.myepark.study.controller.api.CategoryApiController
 com/myepark/study/model/network/response/UserApiResponse.java
  com.myepark.study.model.network.response.UserApiResponse
  com.myepark.study.model.network.response.UserApiResponse$UserApiResponseBuilder
@@ -100,8 +100,8 @@ com/myepark/study/model/network/response/PartnerApiResponse.java
  com.myepark.study.model.network.response.PartnerApiResponse$PartnerApiResponseBuilder
 com/myepark/study/model/enumclass/UserStatus.java
  com.myepark.study.model.enumclass.UserStatus
-com/myepark/study/service/ItemApiLogicService.java
- com.myepark.study.service.ItemApiLogicService
+com/myepark/study/service/UserApiLogicService.java
+ com.myepark.study.service.UserApiLogicService
 com/myepark/study/service/PartnerApiLogicService.java
  com.myepark.study.service.PartnerApiLogicService
 com/myepark/study/service/BaseService.java
@@ -116,16 +116,16 @@ com/myepark/study/service/AdminUserApiLogicService.java
  com.myepark.study.service.AdminUserApiLogicService
 com/myepark/study/controller/CrudController.java
  com.myepark.study.controller.CrudController
-com/myepark/study/service/UserApiLogicService.java
- com.myepark.study.service.UserApiLogicService
+com/myepark/study/service/ItemApiLogicService.java
+ com.myepark.study.service.ItemApiLogicService
 com/myepark/study/controller/api/PartnerApiController.java
  com.myepark.study.controller.api.PartnerApiController
-com/myepark/study/controller/api/CategoryApiController.java
- com.myepark.study.controller.api.CategoryApiController
 com/myepark/study/controller/api/ItemApiController.java
  com.myepark.study.controller.api.ItemApiController
 com/myepark/study/controller/api/OrderGroupApiController.java
  com.myepark.study.controller.api.OrderGroupApiController
+com/myepark/study/repository/PartnerRepository.java
+ com.myepark.study.repository.PartnerRepository
 com/myepark/study/controller/api/AdminUserApiController.java
  com.myepark.study.controller.api.AdminUserApiController
 com/myepark/study/controller/api/OrderDetailApiController.java

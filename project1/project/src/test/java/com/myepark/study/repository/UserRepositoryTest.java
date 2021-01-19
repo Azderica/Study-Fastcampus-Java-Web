@@ -2,6 +2,7 @@ package com.myepark.study.repository;
 
 import com.myepark.study.StudyApplicationTests;
 import com.myepark.study.model.entity.User;
+import com.myepark.study.model.enumclass.UserStatus;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ public class UserRepositoryTest extends StudyApplicationTests {
     public void create() {
         String account = "Test01";
         String password = "Test01";
-        String status = "REGISTERED";
+        UserStatus status = UserStatus.REGISTERED;
         String email = "Test01@gmail.com";
         String phoneNumber = "010-1111-3333";
         LocalDateTime registeredAt = LocalDateTime.now();

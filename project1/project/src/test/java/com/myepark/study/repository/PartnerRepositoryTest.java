@@ -15,6 +15,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PartnerRepositoryTest extends StudyApplicationTests {
 
     @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
     private PartnerRepository partnerRepository;
 
     @Test
@@ -42,7 +45,7 @@ public class PartnerRepositoryTest extends StudyApplicationTests {
         partner.setRegisteredAt(registeredAt);
         partner.setCreatedAt(createdAt);
         partner.setCreatedBy(createdBy);
-//        partner.setCategoryId(categoryId);
+        partner.setCategory(categoryRepository.getOne(categoryId));
 
         Partner newPartner = partnerRepository.save(partner);
         Assert.assertNotNull(newPartner);
