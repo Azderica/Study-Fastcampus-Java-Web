@@ -1,5 +1,6 @@
 package com.myepark.study.model.network.request;
 
+import com.myepark.study.model.enumclass.AdminUserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +21,7 @@ public class AdminUserApiRequest {
 
     private String password;
 
-    private String status;
+    private AdminUserStatus status;
 
     private String role;
 

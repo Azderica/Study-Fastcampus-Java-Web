@@ -24,7 +24,7 @@ public class AdminUserApiLogicService implements CrudInterface<AdminUserApiReque
         AdminUser adminUser = AdminUser.builder()
                 .account(body.getAccount())
                 .password(body.getPassword())
-                .status(body.getPassword())
+                .status(body.getStatus())
                 .role(body.getRole())
                 .registeredAt(LocalDateTime.now())
                 .build();
@@ -51,7 +51,6 @@ public class AdminUserApiLogicService implements CrudInterface<AdminUserApiReque
                             .setPassword(body.getPassword())
                             .setStatus(body.getStatus())
                             .setRole(body.getRole())
-                            .setLastLoginAt(body.getLastLoginAt())
                             .setLastLoginAt(body.getLastLoginAt())
                             .setLoginFailCount(body.getLoginFailCount())
                             .setPasswordUpdatedAt(body.getPasswordUpdatedAt())

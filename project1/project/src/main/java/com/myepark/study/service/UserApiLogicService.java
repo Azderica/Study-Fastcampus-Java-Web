@@ -2,6 +2,7 @@ package com.myepark.study.service;
 
 import com.myepark.study.ifs.CrudInterface;
 import com.myepark.study.model.entity.User;
+import com.myepark.study.model.enumclass.UserStatus;
 import com.myepark.study.model.network.Header;
 import com.myepark.study.model.network.request.UserApiRequest;
 import com.myepark.study.model.network.response.UserApiResponse;
@@ -31,7 +32,7 @@ public class UserApiLogicService implements CrudInterface<UserApiRequest, UserAp
         User user = User.builder()
                 .account(userApiRequest.getAccount())
                 .password(userApiRequest.getPassword())
-                .status("REGISTERED")
+                .status(UserStatus.REGISTERED)
                 .phoneNumber(userApiRequest.getPhoneNumber())
                 .email(userApiRequest.getEmail())
                 .registeredAt(LocalDateTime.now())
