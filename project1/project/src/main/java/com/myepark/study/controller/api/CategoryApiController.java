@@ -1,6 +1,7 @@
 package com.myepark.study.controller.api;
 
 import com.myepark.study.controller.CrudController;
+import com.myepark.study.model.entity.Category;
 import com.myepark.study.model.network.request.CategoryApiRequest;
 import com.myepark.study.model.network.response.CategoryApiResponse;
 import com.myepark.study.service.CategoryApiLogicService;
@@ -13,13 +14,6 @@ import javax.annotation.PostConstruct;
 @Slf4j
 @RestController
 @RequestMapping("/api/category")
-public class CategoryApiController extends CrudController<CategoryApiRequest, CategoryApiResponse> {
+public class CategoryApiController extends CrudController<CategoryApiRequest, CategoryApiResponse, Category> {
 
-    @Autowired
-    private CategoryApiLogicService categoryApiLogicService;
-
-    @PostConstruct
-    public void init(){
-        this.baseService = categoryApiLogicService;
-    }
 }

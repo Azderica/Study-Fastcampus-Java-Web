@@ -14,16 +14,13 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 @Service
-public class OrderDetailApiLogicService implements CrudInterface<OrderDetailApiRequest, OrderDetailApiResponse> {
+public class OrderDetailApiLogicService extends BaseService<OrderDetailApiRequest, OrderDetailApiResponse, OrderDetail> {
 
     @Autowired
     private OrderGroupRepository orderGroupRepository;
 
     @Autowired
     private ItemRepository itemRepository;
-
-    @Autowired
-    private OrderDetailRepository orderDetailRepository;
 
     @Override
     public Header<OrderDetailApiResponse> create(Header<OrderDetailApiRequest> request) {
@@ -38,13 +35,13 @@ public class OrderDetailApiLogicService implements CrudInterface<OrderDetailApiR
                 .item(itemRepository.getOne(body.getItemId()))
                 .build();
 
-        OrderDetail newOrderDetail = orderDetailRepository.save(orderDetail);
+        OrderDetail newOrderDetail = baseRepository.save(orderDetail);
         return response(newOrderDetail);
     }
 
     @Override
     public Header<OrderDetailApiResponse> read(Long id) {
-        return orderDetailRepository.findById(id)
+        return baseRepository.findById(id)
                 .map(orderDetail -> response(orderDetail))
                 .orElseGet(() -> Header.ERROR("No Data"));
     }
@@ -53,7 +50,7 @@ public class OrderDetailApiLogicService implements CrudInterface<OrderDetailApiR
     public Header<OrderDetailApiResponse> update(Header<OrderDetailApiRequest> request) {
         OrderDetailApiRequest body = request.getData();
 
-        return orderDetailRepository.findById(body.getId())
+        return baseRepository.findById(body.getId())
                 .map(orderDetail -> {
                     orderDetail
                             .setStatus(body.getStatus())
@@ -64,16 +61,16 @@ public class OrderDetailApiLogicService implements CrudInterface<OrderDetailApiR
                             .setItem(itemRepository.getOne(body.getItemId()));
                     return orderDetail;
                 })
-                .map(orderDetail -> orderDetailRepository.save(orderDetail))
+                .map(orderDetail -> baseRepository.save(orderDetail))
                 .map(this::response)
                 .orElseGet(() -> Header.ERROR("No Data"));
     }
 
     @Override
     public Header delete(Long id) {
-        return orderDetailRepository.findById(id)
+        return baseRepository.findById(id)
                 .map(orderDetail -> {
-                    orderDetailRepository.delete(orderDetail);
+                    baseRepository.delete(orderDetail);
                     return Header.OK();
                 })
                 .orElseGet(() -> Header.ERROR("No Data"));
