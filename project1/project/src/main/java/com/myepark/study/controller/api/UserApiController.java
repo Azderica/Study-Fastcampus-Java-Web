@@ -4,6 +4,7 @@ import com.myepark.study.ifs.CrudInterface;
 import com.myepark.study.model.network.Header;
 import com.myepark.study.model.network.request.UserApiRequest;
 import com.myepark.study.model.network.response.UserApiResponse;
+import com.myepark.study.model.network.response.UserOrderInfoApiResponse;
 import com.myepark.study.service.UserApiLogicService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class UserApiController implements CrudInterface<UserApiRequest, UserApiR
 
     @Autowired
     private UserApiLogicService userApiLogicService;
+
+    @GetMapping("/{id}/orderInfo")
+    public Header<UserOrderInfoApiResponse> orderInfo(@PathVariable Long id){
+        return userApiLogicService.orderInfo(id);
+    }
 
     @GetMapping("")
     public Header<List<UserApiResponse>> search(
