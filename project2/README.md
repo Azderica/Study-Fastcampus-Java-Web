@@ -11,3 +11,25 @@
 
 
 
+### JPA - OneToOne
+
+#### cascade
+
+
+
+
+
+#### fetch
+
+
+
+
+
+#### optional
+
+
+
+
+
+#### orphanRemoval
+
