@@ -20,9 +20,11 @@ public class PersonService {
     private PersonRepository personRepository;
 
     public List<Person> getPersonExcludeBlocks() {
-        List<Person> people = personRepository.findAll();
+        return personRepository.findByBlockIsNull();
+    }
 
-        return people.stream().filter(person -> person.getBlock() == null).collect(Collectors.toList());
+    public List<Person> getPeopleByName(String name) {
+        return personRepository.findByName(name);
     }
 
     @Transactional(readOnly = true)
@@ -33,4 +35,5 @@ public class PersonService {
 
         return person;
     }
+
 }
