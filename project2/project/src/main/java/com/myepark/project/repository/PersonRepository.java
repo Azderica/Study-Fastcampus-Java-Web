@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface PersonRepository extends JpaRepository<Person, Long> {
@@ -18,5 +17,6 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
     @Query(value = "Select person from Person person where person.birthday.monthOfBirthday = :monthOfBirthDay")
     List<Person> findByMonthOfBirthday(@Param("monthOfBirthDay") int monthOfBirthday);
 
-
+    @Query(value = "Select * from Person person where person.deleted = true", nativeQuery = true)
+    List<Person> findPeopleDeleted();
 }
