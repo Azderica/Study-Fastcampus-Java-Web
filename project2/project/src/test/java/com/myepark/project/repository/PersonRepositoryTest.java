@@ -21,34 +21,19 @@ class PersonRepositoryTest {
 
     @Test
     void crud() {
-        Person person = new Person("martin", 10, "A");
+        Person person = new Person();
+        person.setName("john");
+        person.setAge(10);
+        person.setBloodType("A");
 
         personRepository.save(person);
 
-        System.out.println(personRepository.findAll());
-
-        List<Person> people = personRepository.findAll();
+        List<Person> people = personRepository.findByName("john");
 
         assertThat(people.size()).isEqualTo(1);
-        assertThat(people.get(0).getName()).isEqualTo("martin");
+        assertThat(people.get(0).getName()).isEqualTo("john");
         assertThat(people.get(0).getAge()).isEqualTo(10);
         assertThat(people.get(0).getBloodType()).isEqualTo("A");
-    }
-
-    @Test
-    void hashCodeAndEquals() {
-        Person person1 = new Person("martin", 10, "A");
-        Person person2 = new Person("martin", 10, "B");
-
-        System.out.println(person1.equals(person2));
-        System.out.println(person1.hashCode());
-        System.out.println(person2.hashCode());
-
-        Map<Person, Integer> map = new HashMap<>();
-        map.put(person1, person1.getAge());
-
-        System.out.println(map);
-        System.out.println(map.get(person2));
     }
 
 }
