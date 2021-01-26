@@ -1,4 +1,7 @@
 package com.myepark.project.repository;
 
-public interface GroupRepository {
+import com.myepark.project.domain.Group;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface GroupRepository extends JpaRepository<Group, Long> {
 }

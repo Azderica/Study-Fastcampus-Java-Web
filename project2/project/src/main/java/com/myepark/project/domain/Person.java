@@ -19,6 +19,7 @@ import java.time.LocalDate;
 @EqualsAndHashCode
 @Data
 @Where(clause = "deleted = false")
+@ToString(exclude = {"group"})
 public class Person {
 
     @Id
@@ -45,6 +46,10 @@ public class Person {
 
     @ColumnDefault("0")
     private boolean deleted;
+
+    // Person N : 1 Group
+    @ManyToOne
+    private Group group;
 
     public void set(PersonDto personDto){
         if(!StringUtils.isEmpty(personDto.getHobby())){

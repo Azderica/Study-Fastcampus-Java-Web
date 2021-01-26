@@ -49,9 +49,4 @@ public class GroupController {
     public void putPersonInGroup(@PathVariable Long id, @PathVariable Long personId) {
         groupService.putPersonInGroup(id, personId);
     }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        groupService.delete(id);
-    }
 }
