@@ -54,3 +54,96 @@ true : 반드시 값이 필요합니다.
 
 
 `jpaqueryDsl` 에서 `native query = true`  로 설정하면, 실제 query 문을 쓸 수도 있다.
+
+
+
+
+
+---
+
+해당 프로젝트에서 나온 개념
+
+
+
+### 1-cycle
+
+- JPA
+  - Entity
+  - @OntToOne Relation
+    - CascadeType
+    - FetchType
+    - Optional, orphanRemoval
+  - QueryMethod
+  - @Embedded
+  - @Valid
+  - @Query
+  - @Where (for Soft-Delete)
+  - Data.sql
+- SpringMVC
+  - @GetMapping
+  - @PostMapping
+  - @PutMapping
+  - @PatchMapping
+  - @DeleteMapping
+  - @PathVariable
+  - @RequestBody
+- Lombok
+  - @Getter
+  - @Setter
+  - @ToString
+  - @Constructor
+  - @EqualsAndHashCode
+  - @Data
+- SpringbootTest
+- Java8
+  - Stream
+  - Filter
+  - Map
+
+
+
+### 2-cycle
+
+- SpringMVC
+  - CustomJsonSerializer
+- SpringTEst
+  - MockMvc Test
+  - Matcher
+  - Junit5
+- MockTest
+  - Mockito
+  - CustomArgumentMatcher
+- Exception Handling
+  - CustomException
+  - ExceptionHandler
+  - GlobalExceptionHandler
+- Parameter Validator
+  - @NotEmpty
+  - @NotBlank
+  - @Valid
+- Paging
+  - Pageable
+  - Page<T>
+
+
+
+### 향후 공부하면 좋을 개념
+
+- FrontEnd 개발
+  - Web
+    - VueJs, ReactJs
+  - App
+    - Android App[
+    - IOS App
+- DB 연동
+  - MySQL
+  - MongoDB
+- Spring(Boot)의 중금 활용
+  - 추가적인 설정
+  - Customizing 설정
+- JPA 중급 활용
+  - 다양한 Relation
+  - QueryDSL / Jooq
+- 로직의 확장
+  - 추가적인 스펙
+
