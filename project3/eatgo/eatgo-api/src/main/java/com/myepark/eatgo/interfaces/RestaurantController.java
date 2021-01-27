@@ -1,0 +1,36 @@
+package com.myepark.eatgo.interfaces;
+
+import com.myepark.eatgo.domain.Restaurant;
+import com.myepark.eatgo.repository.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@RestController
+@RequestMapping("/restaurants")
+public class RestaurantController {
+
+    @Autowired
+    private RestaurantRepository restaurantRepository;
+
+    @GetMapping("")
+    public List<Restaurant> list() {
+        List<Restaurant> restaurants = new ArrayList<>();
+
+        Restaurant restaurant = new Restaurant(1004L, "Bob zip", "Seoul");
+
+        restaurants.add(restaurant);
+
+        return restaurants;
+    }
+
+    @GetMapping("/{id}")
+    public Restaurant detail(@PathVariable("id") Long id) {
+        return null;
+    }
+}
