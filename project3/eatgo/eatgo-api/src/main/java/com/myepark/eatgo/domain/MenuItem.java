@@ -22,7 +22,7 @@ public class MenuItem {
 
     private String name;
 
-//    @Transient
-//    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-//    private boolean destroy;
+    @Transient
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    private boolean destroy;
 }

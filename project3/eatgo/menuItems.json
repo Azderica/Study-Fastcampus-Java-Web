@@ -1,0 +1,10 @@
+[
+  {
+    "id": 5,
+    "name": "Kim Chi"
+  },
+  {
+    "id": 6,
+    "destroy": true
+  }
+]
