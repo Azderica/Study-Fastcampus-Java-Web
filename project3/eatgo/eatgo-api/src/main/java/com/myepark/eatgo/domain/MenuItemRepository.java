@@ -1,4 +1,4 @@
-package com.myepark.eatgo.repository;
+package com.myepark.eatgo.domain;
 
 import com.myepark.eatgo.domain.MenuItem;
 import org.springframework.data.repository.CrudRepository;

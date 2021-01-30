@@ -13,8 +13,7 @@ import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Getter @Setter
 @Entity
 @Builder
 public class Restaurant {
@@ -22,7 +21,7 @@ public class Restaurant {
     @GeneratedValue
     private Long id;
 
-    @NotNull
+//    @NotNull
     private Long categoryId;
 
     @NotEmpty
@@ -38,17 +37,6 @@ public class Restaurant {
 //    @Transient
 //    @JsonInclude(JsonInclude.Include.NON_NULL)
 //    private List<Review> reviews;
-
-    public Restaurant(Long id, String name, String address) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-    }
-
-    public Restaurant(String name, String address) {
-        this.name = name;
-        this.address = address;
-    }
 
     public String getInformation() {
         return name + " in " + address;

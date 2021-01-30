@@ -10,7 +10,6 @@ import javax.persistence.Transient;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 @Getter @Setter
 @Entity
 @Builder
