@@ -17,9 +17,13 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.core.StringContains.containsString;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -30,14 +34,8 @@ public class RestaurantControllerTest {
     @Autowired
     private WebApplicationContext wac;
 
+    @MockBean
     private RestaurantService restaurantService;
-
-    @MockBean
-    private RestaurantRepository restaurantRepository;
-
-    @MockBean
-    private MenuItemRepository menuItemRepository;
-
 
     private MockMvc mockMvc;
 
@@ -47,53 +45,78 @@ public class RestaurantControllerTest {
                 .webAppContextSetup(wac)
                 .alwaysDo(print())
                 .build();
-
-        MockitoAnnotations.initMocks(this);
-        mockRestaurantRepository();
-        mockMenuItemRepository();
-
-//        restaurantService = new RestaurantService(restaurantRepository, menuItemRepository);
     }
 
-    private void mockRestaurantRepository() {
-        List<Restaurant> restaurants = new ArrayList<>();
-        Restaurant restaurant = new Restaurant(1004L, "Bob zip", "Seoul");
-        restaurants.add(restaurant);
 
-//        given(restaurantService.findAll()).willReturn(restaurants);
-//        given(restaurantService.findById(1004L)).willReturn(restaurant);
-    }
+//    @Test
+//    public void list() throws Exception {
+//        List<Restaurant> restaurants = new ArrayList<>();
+//        restaurants.add(Restaurant.builder()
+//                .id(1004L)
+//                .categoryId(1L)
+//                .name("JOKER House")
+//                .address("Seoul")
+//                .build());
+//
+//        given(restaurantService.getRestaurants("Seoul", 1L))
+//                .willReturn(restaurants);
+//
+//        mockMvc.perform(get("/restaurants?region=Seoul&category=1"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string(
+//                        containsString("\"id\":1004")
+//                ))
+//                .andExpect(content().string(
+//                        containsString("\"name\":\"JOKER House\"")
+//                ));
+//    }
 
-    private void mockMenuItemRepository() {
-        List<MenuItem> menuItems = new ArrayList<>();
-//        menuItems.add(new MenuItem("Kimchi"));
 
-//        given(menuItemRepository.findAllByRestaurantId(1004L)).willReturn(menuItemsa);
-    }
+//    @Test
+//    public void detailWithExisted() throws Exception {
+//        Restaurant restaurant = Restaurant.builder()
+//                .id(1004L)
+//                .name("JOKER House")
+//                .address("Seoul")
+//                .build();
+//        MenuItem menuItem = MenuItem.builder()
+//                .name("Kimchi")
+//                .build();
+//        restaurant.setMenuItems(Arrays.asList(menuItem));
+//        Review review = Review.builder()
+//                .name("JOKER")
+//                .score(5)
+//                .description("Great!")
+//                .build();
+//        restaurant.setReviews(Arrays.asList(review));
+//
+//        given(restaurantService.getRestaurant(1004L)).willReturn(restaurant);
+//
+//        mvc.perform(get("/restaurants/1004"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string(
+//                        containsString("\"id\":1004")
+//                ))
+//                .andExpect(content().string(
+//                        containsString("\"name\":\"JOKER House\"")
+//                ))
+//                .andExpect(content().string(
+//                        containsString("Kimchi")
+//                ))
+//                .andExpect(content().string(
+//                        containsString("Great!")
+//                ));
+//    }
 
-    @Test
-    public void list() throws Exception {
-        List<Restaurant> restaurants = new ArrayList<>();
-        restaurants.add(new Restaurant(1004L, "Bob zip", "Seould"));
 
+//    @Test
+//    public void detailWithNotExisted() throws Exception {
+//        given(restaurantService.getRestaurant(404L))
+//                .willThrow(new RestaurantNotFoundException(404L));
+//
+//        mvc.perform(get("/restaurants/404"))
+//                .andExpect(status().isNotFound())
+//                .andExpect(content().string("{}"));
+//    }
 
-    }
-
-    @Test
-    public void detail() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/restaurants/1"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    public void create() throws Exception {
-        Restaurant restaurant = new Restaurant(1234L, "BeRyong", "Seoul");
-
-        mockMvc.perform(post("/restaurants"))
-                .andExpect(status().isCreated())
-                .andExpect(header().string("location", "/restaurants/1234"))
-                .andExpect(content().string("{}"));
-
-//        verify(restaurantService).addRestaurant(restaurant);
-    }
 }

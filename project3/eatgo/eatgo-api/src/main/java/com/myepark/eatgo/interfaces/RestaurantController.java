@@ -12,32 +12,46 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/restaurants")
 public class RestaurantController {
 
     @Autowired
     private RestaurantService restaurantService;
 
-    @GetMapping("")
-    public List<Restaurant> list() {
-        List<Restaurant> restaurants = new ArrayList<>();
+    @GetMapping("/restaurants")
+    public List<Restaurant> list(
+//            @RequestParam("region") String region,
+//            @RequestParam("category") Long categoryId
+    ) {
+//        List<Restaurant> restaurants =
+//                restaurantService.getRestaurants(region, categoryId);
 
-        Restaurant restaurant = new Restaurant(1004L, "Bob zip", "Seoul");
-
-        restaurants.add(restaurant);
-
+//        return restaurants;
+        List<Restaurant> restaurants = restaurantService.getRestaurants();
         return restaurants;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/restaurants/{id}")
     public Restaurant detail(@PathVariable("id") Long id) {
-        return null;
+        Restaurant restaurant = restaurantService.getRestaurant(id);
+
+        return restaurant;
     }
 
     @PostMapping("/restaurants")
-    public ResponseEntity<?> create() throws URISyntaxException {
-        URI location = new URI("/resturants/1234");
+    public ResponseEntity<?> create(@RequestBody Restaurant resource) throws URISyntaxException {
+        String name = resource.getName();
+        String address = resource.getAddress();
+
+        Restaurant restaurant = restaurantService.addRestaurant(new Restaurant(name, address));
+        URI location = new URI("/restaurants/" + restaurant.getId());
         return ResponseEntity.created(location).body("{}");
+    }
+
+    @PatchMapping("/restaurants/{id}")
+    public String update(@PathVariable("id") Long id,
+                         @RequestBody Restaurant restaurant){
+        return "{}";
     }
 }

@@ -12,11 +12,16 @@ import java.util.List;
 @Service
 public class RestaurantService {
 
-    @Autowired
     private RestaurantRepository restaurantRepository;
+    private MenuItemRepository menuItemRepository;
+//    private ReviewRepository reviewRepository;
 
     @Autowired
-    private MenuItemRepository menuItemRepository;
+    public RestaurantService(RestaurantRepository restaurantRepository,
+                             MenuItemRepository menuItemRepository) {
+        this.restaurantRepository = restaurantRepository;
+        this.menuItemRepository = menuItemRepository;
+    }
 
     public List<Restaurant> getRestaurants() {
         List<Restaurant> restaurants = restaurantRepository.findAll();
@@ -24,8 +29,16 @@ public class RestaurantService {
         return restaurants;
     }
 
-    public Restaurant getRestaurent(Long id){
-        Restaurant restaurant = restaurantRepository.findById(id);
+    public List<Restaurant> getRestaurants(String region, long categoryId) {
+        List<Restaurant> restaurants =
+                restaurantRepository.findAllByAddressContainingAndCategoryId(
+                        region, categoryId);
+
+        return restaurants;
+    }
+
+    public Restaurant getRestaurant(Long id) {
+        Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
 
         List<MenuItem> menuItems = menuItemRepository.findAllByRestaurantId(id);
         restaurant.setMenuItems(menuItems);
@@ -33,7 +46,16 @@ public class RestaurantService {
         return restaurant;
     }
 
-    public void addRestaurants(Restaurant restaurant){
-
+    public Restaurant addRestaurant(Restaurant restaurant) {
+        Restaurant saved = restaurantRepository.save(restaurant);
+        return saved;
     }
+//
+//    public Restaurant updateRestaurant(Long id, Long categoryId,
+//                                       String name, String address) {
+//        Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
+//
+//        return restaurant;
+//    }
+
 }
