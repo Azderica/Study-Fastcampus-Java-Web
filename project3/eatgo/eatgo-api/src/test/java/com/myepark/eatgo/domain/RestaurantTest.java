@@ -10,7 +10,23 @@ public class RestaurantTest {
 
     @Test
     public void creation() {
-        Restaurant restaurant = new Restaurant();
-        //assertThat(restaurant.getName(), is("fail"));
+        Restaurant restaurant = Restaurant.builder()
+                .id(1004L)
+                .name("Bob zip")
+                .address("Seoul").build();
+
+        assertEquals(restaurant.getId(), 1004L);
+        assertEquals(restaurant.getName(), "Bob zip");
+        assertEquals(restaurant.getAddress(), "Seoul");
+    }
+
+    @Test
+    public void information() {
+        Restaurant restaurant = Restaurant.builder()
+                .id(1004L)
+                .name("Bob zip")
+                .address("Seoul").build();
+
+        assertThat(restaurant.getInformation()).isEqualTo("Bob zip in Seoul");
     }
 }

@@ -9,25 +9,16 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 class RestaurantServiceTest {
 
@@ -166,24 +157,25 @@ class RestaurantServiceTest {
 
         assertThat(created.getId()).isEqualTo(1234L);
     }
-//
-//    @Test
-//    public void updateRestaurant() {
-//        Restaurant restaurant = Restaurant.builder()
-//                .id(1004L)
+
+    @Test
+    public void updateRestaurant() {
+        Restaurant restaurant = Restaurant.builder()
+                .id(1004L)
 //                .categoryId(1L)
-//                .name("Bob zip")
-//                .address("Seoul")
-//                .build();
-//
-//        given(restaurantRepository.findById(1004L))
-//                .willReturn(Optional.of(restaurant));
-//
+                .name("Bob zip")
+                .address("Seoul")
+                .build();
+
+        given(restaurantRepository.findById(1004L))
+                .willReturn(Optional.of(restaurant));
+
 //        restaurantService.updateRestaurant(1004L, 2L, "Sool zip", "Busan");
-//
+        restaurantService.updateRestaurant(1004L, "Sool zip", "Busan");
+
 //        assertThat(restaurant.getCategoryId()).isEqualTo(2L);
-//        assertThat(restaurant.getName()).isEqualTo("Sool zip");
-//        assertThat(restaurant.getAddress()).isEqualTo("Busan");
-//    }
+        assertThat(restaurant.getName()).isEqualTo("Sool zip");
+        assertThat(restaurant.getAddress()).isEqualTo("Busan");
+    }
 
 }
