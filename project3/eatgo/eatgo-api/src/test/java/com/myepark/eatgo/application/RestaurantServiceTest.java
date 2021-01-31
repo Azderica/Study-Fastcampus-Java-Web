@@ -29,8 +29,8 @@ class RestaurantServiceTest {
     @Mock
     private MenuItemRepository menuItemRepository;
 
-//    @Mock
-//    private ReviewRepository reviewRepository;
+    @Mock
+    private ReviewRepository reviewRepository;
 
     @BeforeEach
     void beforeEach() {
@@ -38,7 +38,7 @@ class RestaurantServiceTest {
 
         mockRestaurantRepository();
         mockMenuItemRepository();
-//        mockReviewRepository();
+        mockReviewRepository();
     }
 
     private void mockRestaurantRepository() {
@@ -69,17 +69,17 @@ class RestaurantServiceTest {
                 .willReturn(menuItems);
     }
 
-//    private void mockReviewRepository() {
-//        List<Review> reviews = new ArrayList<>();
-//        reviews.add(Review.builder()
-//                .name("BeRyong")
-//                .score(1)
-//                .description("Bad")
-//                .build());
-//
-//        given(reviewRepository.findAllByRestaurantId(1004L))
-//                .willReturn(reviews);
-//    }
+    private void mockReviewRepository() {
+        List<Review> reviews = new ArrayList<>();
+        reviews.add(Review.builder()
+                .name("BeRyong")
+                .score(1)
+                .description("Bad")
+                .build());
+
+        given(reviewRepository.findAllByRestaurantId(1004L))
+                .willReturn(reviews);
+    }
 
     @Test
     public void getRestaurants() {
@@ -99,7 +99,7 @@ class RestaurantServiceTest {
         Restaurant restaurant = restaurantService.getRestaurant(1004L);
 
         verify(menuItemRepository).findAllByRestaurantId(eq(1004L));
-//        verify(reviewRepository).findAllByRestaurantId(eq(1004L));
+        verify(reviewRepository).findAllByRestaurantId(eq(1004L));
 
         assertThat(restaurant.getId()).isEqualTo(1004L);
 
@@ -107,9 +107,9 @@ class RestaurantServiceTest {
 
         assertThat(menuItem.getName()).isEqualTo("Kimchi");
 
-//        Review review = restaurant.getReviews().get(0);
+        Review review = restaurant.getReviews().get(0);
 
-//        assertThat(review.getDescription()).isEqualTo("Bad");
+        assertThat(review.getDescription()).isEqualTo("Bad");
     }
 
     @Test

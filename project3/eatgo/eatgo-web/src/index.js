@@ -11,7 +11,7 @@
                 ${restaurant.id}
                 ${restaurant.name}
                 ${restaurant.address}
-            </p>       
-        `)}
+            </p>
+        `).join('')}
     `;
 })();
