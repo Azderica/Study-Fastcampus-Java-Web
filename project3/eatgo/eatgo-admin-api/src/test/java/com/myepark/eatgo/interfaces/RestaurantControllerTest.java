@@ -1,10 +1,8 @@
 package com.myepark.eatgo.interfaces;
 
 import com.myepark.eatgo.application.RestaurantService;
-import com.myepark.eatgo.domain.MenuItem;
 import com.myepark.eatgo.domain.Restaurant;
 import com.myepark.eatgo.domain.RestaurantNotFoundException;
-import com.myepark.eatgo.domain.Review;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.core.StringContains.containsString;
