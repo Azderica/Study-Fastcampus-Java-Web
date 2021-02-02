@@ -3,8 +3,8 @@ package com.myepark.eatgo.application;
 import com.myepark.eatgo.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -23,14 +23,6 @@ public class RestaurantService {
         return restaurants;
     }
 
-    public List<Restaurant> getRestaurants(String region, long categoryId) {
-        List<Restaurant> restaurants =
-                restaurantRepository.findAllByAddressContainingAndCategoryId(
-                        region, categoryId);
-
-        return restaurants;
-    }
-
     public Restaurant getRestaurant(Long id) {
         Restaurant restaurant = restaurantRepository.findById(id)
                 .orElseThrow(() -> new RestaurantNotFoundException(id));
@@ -39,24 +31,16 @@ public class RestaurantService {
     }
 
     public Restaurant addRestaurant(Restaurant restaurant) {
-        Restaurant saved = restaurantRepository.save(restaurant);
-        return saved;
+        return restaurantRepository.save(restaurant);
     }
 
     @Transactional
-    public Restaurant updateRestaurant(Long id, String name, String address) {
+    public Restaurant updateRestaurant(Long id, Long categoryId,
+                                       String name, String address) {
         Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
 
-        restaurant.updateInformation(name, address);
+        restaurant.updateInformation(categoryId, name, address);
 
         return restaurant;
     }
-//
-//    public Restaurant updateRestaurant(Long id, Long categoryId,
-//                                       String name, String address) {
-//        Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
-//
-//        return restaurant;
-//    }
-
 }

@@ -43,9 +43,7 @@ class RestaurantServiceTest {
                 .build();
         restaurants.add(restaurant);
 
-        given(restaurantRepository.findAllByAddressContainingAndCategoryId(
-                "Seoul", 1L))
-                .willReturn(restaurants);
+        given(restaurantRepository.findAll()).willReturn(restaurants);
 
         given(restaurantRepository.findById(1004L))
                 .willReturn(Optional.of(restaurant));
@@ -53,11 +51,7 @@ class RestaurantServiceTest {
 
     @Test
     public void getRestaurants() {
-        String region = "Seoul";
-        Long categoryId = 1L;
-
-        List<Restaurant> restaurants =
-                restaurantService.getRestaurants(region, categoryId);
+        List<Restaurant> restaurants = restaurantService.getRestaurants();
 
         Restaurant restaurant = restaurants.get(0);
 
@@ -79,7 +73,7 @@ class RestaurantServiceTest {
     }
 
     @Test
-    public void addRestaurants() {
+    public void addRestaurant() {
         given(restaurantRepository.save(any())).will(invocation -> {
             Restaurant restaurant = invocation.getArgument(0);
             restaurant.setId(1234L);
@@ -87,7 +81,6 @@ class RestaurantServiceTest {
         });
 
         Restaurant restaurant = Restaurant.builder()
-                .categoryId(1L)
                 .name("BeRyong")
                 .address("Busan")
                 .build();
@@ -101,7 +94,6 @@ class RestaurantServiceTest {
     public void updateRestaurant() {
         Restaurant restaurant = Restaurant.builder()
                 .id(1004L)
-//                .categoryId(1L)
                 .name("Bob zip")
                 .address("Seoul")
                 .build();
@@ -109,12 +101,9 @@ class RestaurantServiceTest {
         given(restaurantRepository.findById(1004L))
                 .willReturn(Optional.of(restaurant));
 
-//        restaurantService.updateRestaurant(1004L, 2L, "Sool zip", "Busan");
-        restaurantService.updateRestaurant(1004L, "Sool zip", "Busan");
+        restaurantService.updateRestaurant(1004L, 1L, "Sool zip", "Busan");
 
-//        assertThat(restaurant.getCategoryId()).isEqualTo(2L);
         assertThat(restaurant.getName()).isEqualTo("Sool zip");
         assertThat(restaurant.getAddress()).isEqualTo("Busan");
     }
-
 }

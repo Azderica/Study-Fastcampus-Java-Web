@@ -1,7 +1,7 @@
 package com.myepark.eatgo.interfaces;
 
-import com.myepark.eatgo.application.RegionService;
-import com.myepark.eatgo.domain.Region;
+import com.myepark.eatgo.application.CategoryService;
+import com.myepark.eatgo.domain.Category;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-public class RegionControllerTest {
+public class CategoryControllerTest {
 
     @Autowired
     private WebApplicationContext wac;
@@ -33,7 +33,7 @@ public class RegionControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private RegionService regionService;
+    private CategoryService categoryService;
 
     @BeforeEach
     void beforeEach() {
@@ -45,30 +45,15 @@ public class RegionControllerTest {
 
     @Test
     public void list() throws Exception {
-        List<Region> regions = new ArrayList<>();
-        regions.add(Region.builder().name("Seoul").build());
+        List<Category> categories = new ArrayList<>();
+        categories.add(Category.builder().name("Korean Food").build());
 
-        given(regionService.getRegions())
-                .willReturn(regions);
+        given(categoryService.getCategories())
+                .willReturn(categories);
 
-        mockMvc.perform(get("/regions"))
+        mockMvc.perform(get("/categories"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Seoul")));
-    }
-
-    @Test
-    public void create() throws Exception {
-        Region region = Region.builder().name("Seoul").build();
-        given(regionService.addRegion("Seoul"))
-                .willReturn(region);
-
-        mockMvc.perform(post("/regions")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"Seoul\"}"))
-                .andExpect(status().isCreated())
-                .andExpect(content().string("{}"));
-
-        verify(regionService).addRegion("Seoul");
+                .andExpect(content().string(containsString("Korean Food")));
     }
 
 }

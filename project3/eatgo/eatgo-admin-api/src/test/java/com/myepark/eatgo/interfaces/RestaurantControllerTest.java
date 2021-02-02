@@ -43,18 +43,17 @@ public class RestaurantControllerTest {
                 .build();
     }
 
-
     @Test
     public void list() throws Exception {
         List<Restaurant> restaurants = new ArrayList<>();
         restaurants.add(Restaurant.builder()
                 .id(1004L)
+                .categoryId(1L)
                 .name("JOKER House")
                 .address("Seoul")
                 .build());
 
-        given(restaurantService.getRestaurants())
-                .willReturn(restaurants);
+        given(restaurantService.getRestaurants()).willReturn(restaurants);
 
         mockMvc.perform(get("/restaurants"))
                 .andExpect(status().isOk())
@@ -66,11 +65,11 @@ public class RestaurantControllerTest {
                 ));
     }
 
-
     @Test
     public void detailWithExisted() throws Exception {
         Restaurant restaurant = Restaurant.builder()
                 .id(1004L)
+                .categoryId(1L)
                 .name("JOKER House")
                 .address("Seoul")
                 .build();
@@ -85,7 +84,6 @@ public class RestaurantControllerTest {
                 .andExpect(content().string(
                         containsString("\"name\":\"JOKER House\"")
                 ));
-
     }
 
     @Test
@@ -96,23 +94,24 @@ public class RestaurantControllerTest {
         mockMvc.perform(get("/restaurants/404"))
                 .andExpect(status().isNotFound())
                 .andExpect(content().string("{}"));
-
     }
 
     @Test
     public void createWithValidData() throws Exception {
         given(restaurantService.addRestaurant(any())).will(invocation -> {
             Restaurant restaurant = invocation.getArgument(0);
-            return restaurant.builder()
+            return Restaurant.builder()
                     .id(1234L)
+                    .categoryId(1L)
                     .name(restaurant.getName())
-                    .name(restaurant.getAddress())
+                    .address(restaurant.getAddress())
                     .build();
         });
 
         mockMvc.perform(post("/restaurants")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"Beryong\",\"address\":\"Busan\"}"))
+                .content("{\"categoryId\":1,\"name\":\"Beryong\"," +
+                        "\"address\":\"Busan\"}"))
                 .andExpect(status().isCreated())
                 .andExpect(header().string("location", "/restaurants/1234"))
                 .andExpect(content().string("{}"));
@@ -122,18 +121,9 @@ public class RestaurantControllerTest {
 
     @Test
     public void createWithInvalidData() throws Exception {
-        given(restaurantService.addRestaurant(any())).will(invocation -> {
-            Restaurant restaurant = invocation.getArgument(0);
-            return restaurant.builder()
-                    .id(1234L)
-                    .name(restaurant.getName())
-                    .name(restaurant.getAddress())
-                    .build();
-        });
-
         mockMvc.perform(post("/restaurants")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"\",\"address\":\"\"}"))
+                .content("{\"categoryId\":1,\"name\":\"\",\"address\":\"\"}"))
                 .andExpect(status().isBadRequest());
     }
 
@@ -141,17 +131,28 @@ public class RestaurantControllerTest {
     public void updateWithValidData() throws Exception {
         mockMvc.perform(patch("/restaurants/1004")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"JOKER Bar\",\"address\":\"Busan\"}"))
+                .content("{\"categoryId\":1,\"name\":\"JOKER Bar\"," +
+                        "\"address\":\"Busan\"}"))
                 .andExpect(status().isOk());
 
-        verify(restaurantService).updateRestaurant(1004L, "JOKER Bar", "Busan");
+        verify(restaurantService)
+                .updateRestaurant(1004L, 1L, "JOKER Bar", "Busan");
     }
 
     @Test
     public void updateWithInvalidData() throws Exception {
         mockMvc.perform(patch("/restaurants/1004")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"\",\"address\":\"\"}"))
+                .content("{\"categoryId\":1,\"name\":\"\",\"address\":\"\"}"))
                 .andExpect(status().isBadRequest());
     }
+
+    @Test
+    public void updateWithoutName() throws Exception {
+        mockMvc.perform(patch("/restaurants/1004")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"\",\"address\":\"Busan\"}"))
+                .andExpect(status().isBadRequest());
+    }
+
 }

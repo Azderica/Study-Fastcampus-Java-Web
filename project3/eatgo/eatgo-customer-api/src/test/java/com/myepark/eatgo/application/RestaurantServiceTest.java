@@ -119,4 +119,41 @@ class RestaurantServiceTest {
         }).isInstanceOf(RestaurantNotFoundException.class);
     }
 
+    @Test
+    public void addRestaurant() {
+        given(restaurantRepository.save(any())).will(invocation -> {
+            Restaurant restaurant = invocation.getArgument(0);
+            restaurant.setId(1234L);
+            return restaurant;
+        });
+
+        Restaurant restaurant = Restaurant.builder()
+                .categoryId(1L)
+                .name("BeRyong")
+                .address("Busan")
+                .build();
+
+        Restaurant created = restaurantService.addRestaurant(restaurant);
+
+        assertThat(created.getId()).isEqualTo(1234L);
+    }
+
+    @Test
+    public void updateRestaurant() {
+        Restaurant restaurant = Restaurant.builder()
+                .id(1004L)
+                .categoryId(1L)
+                .name("Bob zip")
+                .address("Seoul")
+                .build();
+
+        given(restaurantRepository.findById(1004L))
+                .willReturn(Optional.of(restaurant));
+
+        restaurantService.updateRestaurant(1004L, 2L, "Sool zip", "Busan");
+
+        assertThat(restaurant.getCategoryId()).isEqualTo(2L);
+        assertThat(restaurant.getName()).isEqualTo("Sool zip");
+        assertThat(restaurant.getAddress()).isEqualTo("Busan");
+    }
 }

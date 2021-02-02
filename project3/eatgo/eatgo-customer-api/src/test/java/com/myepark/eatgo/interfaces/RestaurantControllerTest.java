@@ -52,14 +52,15 @@ public class RestaurantControllerTest {
         List<Restaurant> restaurants = new ArrayList<>();
         restaurants.add(Restaurant.builder()
                 .id(1004L)
+                .categoryId(1L)
                 .name("JOKER House")
                 .address("Seoul")
                 .build());
 
-        given(restaurantService.getRestaurants())
+        given(restaurantService.getRestaurants("Seoul", 1L))
                 .willReturn(restaurants);
 
-        mockMvc.perform(get("/restaurants"))
+        mockMvc.perform(get("/restaurants?region=Seoul&category=1"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(
                         containsString("\"id\":1004")
@@ -68,7 +69,6 @@ public class RestaurantControllerTest {
                         containsString("\"name\":\"JOKER House\"")
                 ));
     }
-
 
     @Test
     public void detailWithExisted() throws Exception {
@@ -104,7 +104,6 @@ public class RestaurantControllerTest {
                 .andExpect(content().string(
                         containsString("Great!")
                 ));
-
     }
 
     @Test
@@ -115,7 +114,5 @@ public class RestaurantControllerTest {
         mockMvc.perform(get("/restaurants/404"))
                 .andExpect(status().isNotFound())
                 .andExpect(content().string("{}"));
-
     }
-
 }
