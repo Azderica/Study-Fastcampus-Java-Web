@@ -15,6 +15,11 @@ public class UserTest {
                 .build();
 
         assertThat(user.getName()).isEqualTo("테스터");
-        assertThat(user.isAdmin()).isEqualTo(true);
+        assertThat(user.isAdmin()).isTrue();
+        assertThat(user.isActive()).isTrue();
+
+        user.deativate();
+
+        assertThat(user.isActive()).isFalse();
     }
 }

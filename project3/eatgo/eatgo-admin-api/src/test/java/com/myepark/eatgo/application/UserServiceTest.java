@@ -1,6 +1,5 @@
 package com.myepark.eatgo.application;
 
-import com.myepark.eatgo.domain.ReviewRepository;
 import com.myepark.eatgo.domain.User;
 import com.myepark.eatgo.domain.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
