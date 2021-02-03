@@ -1,4 +1,4 @@
-package com.myepark.eatgo.domain;
+package com.myepark.eatgo.application;
 
 public class EmailExistedException extends RuntimeException {
 

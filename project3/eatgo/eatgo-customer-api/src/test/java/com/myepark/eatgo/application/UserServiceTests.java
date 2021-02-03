@@ -1,6 +1,5 @@
 package com.myepark.eatgo.application;
 
-import com.myepark.eatgo.domain.EmailExistedException;
 import com.myepark.eatgo.domain.User;
 import com.myepark.eatgo.domain.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
