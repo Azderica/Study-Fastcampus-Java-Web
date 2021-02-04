@@ -2,6 +2,7 @@ package com.myepark.eatgo.interfaces;
 
 import com.myepark.eatgo.application.UserService;
 import com.myepark.eatgo.domain.User;
+import com.myepark.eatgo.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,8 +17,8 @@ import java.net.URISyntaxException;
 @RestController
 public class SessionController {
 
-//    @Autowired
-//    private JwtUtil jwtUtil;
+    @Autowired
+    private JwtUtil jwtUtil;
 
     @Autowired
     private UserService userService;
@@ -31,12 +32,10 @@ public class SessionController {
 
         User user = userService.authenticate(email, password);
 
-        String accessToken = "ASCCESSTOKEN";
-//
-//        String accessToken = jwtUtil.createToken(
-//                user.getId(),
-//                user.getName(),
-//                user.isRestaurantOwner() ? user.getRestaurantId() : null);
+        String accessToken = jwtUtil.createToken(
+                user.getId(),
+                user.getName(),
+                user.isRestaurantOwner() ? user.getRestaurantId() : null);
 
         String url = "/session";
         return ResponseEntity.created(new URI(url)).body(
