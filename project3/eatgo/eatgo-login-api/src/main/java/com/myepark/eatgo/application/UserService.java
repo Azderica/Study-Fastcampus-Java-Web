@@ -12,16 +12,11 @@ import javax.transaction.Transactional;
 @Transactional
 public class UserService {
 
-    UserRepository userRepostory;
-
-    PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserRepository userRepostory;
 
     @Autowired
-    public UserService(UserRepository userRepostory,
-                       PasswordEncoder passwordEncoder) {
-        this.userRepostory = userRepostory;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private PasswordEncoder passwordEncoder;
 
     public User authenticate(String email, String password) {
         User user = userRepostory.findByEmail(email)

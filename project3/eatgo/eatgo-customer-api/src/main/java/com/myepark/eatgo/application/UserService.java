@@ -13,16 +13,11 @@ import java.util.Optional;
 @Transactional
 public class UserService {
 
-    UserRepository userRepostory;
-
-    PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserRepository userRepostory;
 
     @Autowired
-    public UserService(UserRepository userRepostory,
-                       PasswordEncoder passwordEncoder) {
-        this.userRepostory = userRepostory;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private PasswordEncoder passwordEncoder;
 
     public User registerUser(String email, String name, String password) {
         Optional<User> existed = userRepostory.findByEmail(email);
