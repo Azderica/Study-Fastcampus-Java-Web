@@ -25,7 +25,7 @@ public class ReviewController {
             @PathVariable("restaurantId") Long restaurantId,
             @Valid @RequestBody Review resource
     ) throws URISyntaxException {
-        Claims claims = (Claims) authentication.getPrincipal();
+        Claims claims = (Claims)authentication.getPrincipal();
 
         String name = claims.get("name", String.class);
         Integer score = resource.getScore();

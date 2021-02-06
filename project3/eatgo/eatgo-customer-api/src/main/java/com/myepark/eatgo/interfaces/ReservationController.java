@@ -25,7 +25,7 @@ public class ReservationController {
             @PathVariable Long restaurantId,
             @Valid @RequestBody Reservation resource
     ) throws URISyntaxException {
-        Claims claims = (Claims) authentication.getPrincipal();
+        Claims claims = (Claims)authentication.getPrincipal();
 
         Long userId = claims.get("userId", Long.class);
         String name = claims.get("name", String.class);

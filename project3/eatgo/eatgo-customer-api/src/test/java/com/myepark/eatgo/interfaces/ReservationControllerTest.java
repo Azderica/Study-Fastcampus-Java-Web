@@ -5,6 +5,7 @@ import com.myepark.eatgo.domain.Reservation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
@@ -19,25 +20,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@WebMvcTest(ReservationController.class)
 public class ReservationControllerTest {
 
     @Autowired
-    private WebApplicationContext wac;
-
     private MockMvc mockMvc;
 
     @MockBean
     private ReservationService reservationService;
-
-    @BeforeEach
-    void beforeEach() {
-        mockMvc = MockMvcBuilders
-                .webAppContextSetup(wac)
-                .alwaysDo(print())
-                .build();
-    }
-
 
     @Test
     public void create() throws Exception {
