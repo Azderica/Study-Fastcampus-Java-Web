@@ -20,7 +20,7 @@ public class ReservationController {
     private ReservationService reservationService;
 
     @PostMapping("/restaurants/{restaurantId}/reservations")
-    public ResponseEntity<?> creaate(
+    public ResponseEntity<?> create(
             Authentication authentication,
             @PathVariable Long restaurantId,
             @Valid @RequestBody Reservation resource
