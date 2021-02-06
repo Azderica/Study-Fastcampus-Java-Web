@@ -25,7 +25,7 @@ public class CategoryServiceTest {
     private CategoryRepository categoryRepository;
 
     @BeforeEach
-    void beforeEach() {
+    void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 

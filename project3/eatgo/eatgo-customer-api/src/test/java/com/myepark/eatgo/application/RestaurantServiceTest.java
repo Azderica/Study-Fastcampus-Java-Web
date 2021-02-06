@@ -33,7 +33,7 @@ class RestaurantServiceTest {
     private ReviewRepository reviewRepository;
 
     @BeforeEach
-    void beforeEach() {
+    void setUp() {
         MockitoAnnotations.initMocks(this);
 
         mockRestaurantRepository();

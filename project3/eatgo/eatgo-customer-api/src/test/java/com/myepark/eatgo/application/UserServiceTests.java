@@ -29,7 +29,7 @@ public class UserServiceTests {
     private PasswordEncoder passwordEncoder;
 
     @BeforeEach
-    public void beforeEach() {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 

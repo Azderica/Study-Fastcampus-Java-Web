@@ -21,7 +21,7 @@ public class Restaurant {
     @GeneratedValue
     private Long id;
 
-//    @NotNull
+    @NotNull
     private Long categoryId;
 
     @NotEmpty

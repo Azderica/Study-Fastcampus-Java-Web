@@ -25,7 +25,7 @@ public class RegionServiceTest {
     private RegionRepository regionRepository;
 
     @BeforeEach
-    void beforeEach() {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 

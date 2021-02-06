@@ -20,21 +20,16 @@ public class ReviewServiceTest {
     private ReviewRepository reviewRepository;
 
     @BeforeEach
-    void beforeEach() {
+    void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
     public void addReview() {
-        Review review = Review.builder()
-                .name("JOKER")
-                .score(3)
-                .description("Delicious")
-                .build();
-
-        reviewService.addReview(1004L, review);
+        reviewService.addReview(1004L, "JOKER", 3, "Mat-it-da");
 
         verify(reviewRepository).save(any());
     }
+
 
 }

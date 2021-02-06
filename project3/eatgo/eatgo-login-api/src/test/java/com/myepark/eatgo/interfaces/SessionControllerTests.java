@@ -68,6 +68,7 @@ public class SessionControllerTests {
                 .id(id)
                 .name(name)
                 .level(50L)
+                .restaurantId(369L)
                 .build();
 
         given(userService.authenticate(email, password)).willReturn(mockUser);
