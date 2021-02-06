@@ -13,16 +13,6 @@ public class ReviewService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    public Review addReview(Long restaurantId, Review review){
-        Review saved = Review.builder()
-                .restaurantId(restaurantId)
-                .name(review.getName())
-                .score(review.getScore())
-                .description(review.getDescription())
-                .build();
-        return reviewRepository.save(saved);
-    }
-
     public List<Review> getReviews() {
         return reviewRepository.findAll();
     }

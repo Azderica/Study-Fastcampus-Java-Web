@@ -44,4 +44,13 @@ public class CategoryServiceTest {
         assertThat(category.getName()).isEqualTo("Korean Food");
     }
 
+
+    @Test
+    public void addCategory() {
+        Category category = categoryService.addCategory("Korean Food");
+
+        verify(categoryRepository).save(any());
+
+        assertThat(category.getName()).isEqualTo("Korean Food");
+    }
 }

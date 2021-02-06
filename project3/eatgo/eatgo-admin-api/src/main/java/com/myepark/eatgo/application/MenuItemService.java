@@ -30,6 +30,7 @@ public class MenuItemService {
             menuItemRepository.deleteById(menuItem.getId());
             return;
         }
+
         menuItem.setRestaurantId(restaurantId);
         menuItemRepository.save(menuItem);
     }

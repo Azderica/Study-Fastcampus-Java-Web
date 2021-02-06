@@ -12,10 +12,6 @@ import java.util.List;
 
 @RestController
 public class UserController {
-    // User list
-    // User create ->
-    // User update
-    // User delete
 
     @Autowired
     private UserService userService;
