@@ -59,7 +59,8 @@ services:
       - mysql
     command: bash -c "cd /home/eatgo && sh run.sh"
   admin-web:
-    image: node:10.16.3
+    image: node:12.18.3
+
     volumes:
       - ./eatgo-admin-web:/home/eatgo
     ports:
@@ -73,7 +74,8 @@ services:
       timeout: 10s
       retries: 10
   customer-web:
-    image: node:10.16.3
+    image: node:12.18.3
+
     volumes:
       - ./eatgo-customer-web:/home/eatgo
     ports:
@@ -87,7 +89,8 @@ services:
       timeout: 10s
       retries: 10
   restaurant-web:
-    image: node:10.16.3
+    image: node:12.18.3
+
     volumes:
       - ./eatgo-restaurant-web:/home/eatgo
     ports:
