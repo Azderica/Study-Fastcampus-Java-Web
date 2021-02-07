@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="connectionFactory" class="kr.co.fastcampus.cli.ConnectionFactory">
+        <constructor-arg name="driverClass" value="org.h2.Driver" />
+        <constructor-arg name="url" value="jdbc:h2:file:~/test"/>
+        <constructor-arg name="user" value="sa"/>
+        <constructor-arg name="password" value=""/>
+    </bean>
+    <bean id="connection" class="java.sql.Connection"
+          factory-bean="connectionFactory"
+          factory-method="createConnection" />
+
+    <bean id="aopDao" class="kr.co.fastcampus.cli.AopDao" init-method="init">
+        <constructor-arg ref="connection" />
+    </bean>
+
+    <bean id="aopAspect" class="kr.co.fastcampus.cli.AopConfig" autowire="constructor"/>
+
+    <aop:config>
+        <aop:aspect id="aopDaoAspect" ref="aopAspect">
+            <aop:pointcut id="aopDaoPointcut" expression="execution(* insert(..))"/>
+            <aop:around pointcut-ref="aopDaoPointcut" method="doAroundInsert"/>
+<!--            <aop:before pointcut-ref="aopDaoPointcut" method="doBeforeInsert"/>-->
+<!--            <aop:after-throwing pointcut-ref="aopDaoPointcut" throwing="ex" method="doAfterThrowingInsert"/>-->
+        </aop:aspect>
+    </aop:config>
+</beans>
+
