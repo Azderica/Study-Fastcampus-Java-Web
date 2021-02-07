@@ -2,11 +2,12 @@
 
 ## 프로젝트 소개
 
-레스토랑 예약시스템으로 아래의 3개의 서비스로 구성됩니다.
+레스토랑 예약시스템으로 아래의 개의 서비스로 구성됩니다.
 
-- Admin(관리자) API
-- Customer(손님) API
-- Login(로그인) API
+- Admin(관리자) API / WEB
+- Customer(손님) API / WEB
+- Login(로그인) API / WEB
+- Restaurant(레스토랑) API / WEB
 
 또한 해당 API는 `common` 의 공통 모듈을 사용합니다.
 
@@ -23,6 +24,24 @@
 - Filtering
 - JWT
 - Multi Modules
+
+
+
+## 프로젝트 실행 방법
+
+- Jar 파일로 만들기
+
+```bash
+./gradlew bootJar
+```
+
+- docker 실행
+
+```bash
+docker-compose up
+```
+
+
 
 
 
