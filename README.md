@@ -28,6 +28,10 @@ Poi를 사용한 간단한 샘플 코드
 
 ---
 
-## 완료.
+## 강의 완료.
 
 ![poi](https://user-images.githubusercontent.com/42582516/107709912-5ac62380-6d09-11eb-843f-94c65e3f045c.png)
+
+---
+
+## 강의 후기.
