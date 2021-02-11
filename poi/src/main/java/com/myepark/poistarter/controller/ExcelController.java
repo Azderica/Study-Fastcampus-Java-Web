@@ -47,20 +47,20 @@ public class ExcelController {
 
         Sheet worksheet = workbook.getSheetAt(0);
 
-        for (int i = 1; i < worksheet.getPhysicalNumberOfRows(); i++) { // 4
+        for (int i = 1; i < worksheet.getPhysicalNumberOfRows(); i++) {
 
             Row row = worksheet.getRow(i);
 
             ExcelData data = new ExcelData();
 
-            data.setNum((int) row.getCell(0).getNumericCellValue());
-            data.setName(row.getCell(1).getStringCellValue());
-            data.setEmail(row.getCell(2).getStringCellValue());
+            data.setNum((int) row.getCell(0).getNumericCellValue());    // 실수
+            data.setName(row.getCell(1).getStringCellValue());          // 문자열
+            data.setEmail(row.getCell(2).getStringCellValue());         // 논리
 
             dataList.add(data);
         }
 
-        model.addAttribute("datas", dataList); // 5
+        model.addAttribute("datas", dataList);
 
         return "excelList";
     }

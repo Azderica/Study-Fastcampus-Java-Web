@@ -4,11 +4,14 @@ import lombok.val;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.validation.BindException;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.time.LocalDateTime;
 import java.util.Locale;
+import java.util.Set;
 import java.util.TimeZone;
 
 public class Main {
@@ -30,7 +33,7 @@ public class Main {
 //        System.out.println(set);
 //        val validator = new PersonValidator();
 //        val p = new Person();
-        // https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/Errors.html
+////         https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/Errors.html
 //        val e = new BindException(p, "person");
 //        val violations = validator.validate(p);
 //        System.out.println(e);
